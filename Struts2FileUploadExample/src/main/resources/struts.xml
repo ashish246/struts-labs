@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.multipart.maxSize" value="104857600" />
+
+	<!-- If below property is not defined, you will get "INFO: Unable to find 
+		'struts.multipart.saveDir' property setting. Defaulting to javax.servlet.context.tempdir". 
+		"/" will save the temp file in the root drive i.e. e:/ etc. "." will save 
+		the temp file in "E:\Ashish\Software\eclipse-jee-luna-SR1-win32-x86_64\eclipse\" 
+		directory. This property is for destination path and not for TEMP path -->
+	<constant name="struts.multipart.saveDir"
+		value="${catalina.home}/webapps/Struts2FileUploadExample/temp" />
+
+	<package name="user" namespace="/" extends="struts-default">
+		<action name="upload">
+			<result>/UploadFile.jsp</result>
+		</action>
+		<action name="UploadFile" class="com.struts.upload.actions.UploadFileAction">
+			<param name="filesPath">myfiles</param>
+			<result name="success">/UploadFileSuccess.jsp</result>
+			<result name="input">/UploadFile.jsp</result>
+
+			<interceptor-ref name="defaultStack">
+				<param name="fileUpload.maximumSize">10485760</param>
+				<param name="fileUpload.allowedTypes">text/plain,image/jpeg</param>
+			</interceptor-ref>
+
+		</action>
+	</package>
+
+</struts>

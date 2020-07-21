@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<!-- namespace=”/User” is important and used in URL to access the action 
+		classes, it’s provided to create different modules. -->
+	<package name="user" namespace="/User" extends="struts-default">
+		<action name="home">
+			<result>/login.jsp</result>
+		</action>
+		<action name="login" class="com.struts.action.LoginAction">
+			<result name="SUCCESS">/welcome.jsp</result>
+			<result name="ERROR">/error.jsp</result>
+		</action>
+
+	</package>
+
+</struts>
